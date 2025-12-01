@@ -9,7 +9,7 @@ import (
 
 var version string
 
-var rootCmd = &cobra.Command{
+var RootCmd = &cobra.Command{
 	Use:     "gogo",  //根命令
 	Short:   "gogo",  //简短解释
 	Version: version, //支持-v，-V，-version获取版本信息
@@ -19,11 +19,11 @@ var rootCmd = &cobra.Command{
 }
 
 func init() {
-	rootCmd.PersistentFlags().StringVarP(&version, "version", "v", "v0.0.1", "set_version")
+	RootCmd.PersistentFlags().StringVarP(&version, "version", "v", "v0.0.1", "set_version")
 }
 
 func Execute() {
-	if err := rootCmd.Execute(); err != nil { //根命令运行
+	if err := RootCmd.Execute(); err != nil { //根命令运行
 		fmt.Println(err)
 		os.Exit(1)
 	}

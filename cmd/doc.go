@@ -6,13 +6,13 @@ import (
 )
 
 func init() {
-	rootCmd.AddCommand(doc)
+	RootCmd.AddCommand(doc)
 }
 
 var doc = &cobra.Command{
 	Use:   "doc",
 	Short: "Generate documentation",
 	RunE: func(cmd *cobra.Command, args []string) error {
-		return docd.GenMarkdownTree(rootCmd, "./docs")
+		return docd.GenMarkdownTree(RootCmd, "./docs")
 	},
 }

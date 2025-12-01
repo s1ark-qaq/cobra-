@@ -10,7 +10,7 @@ var quickStart string
 var port string
 
 func init() {
-	rootCmd.AddCommand(api)
+	RootCmd.AddCommand(api)
 	api.Flags().StringVarP(&quickStart, "start", "s", "", "quick start")
 	//api.Flags().StringVarP(&quickStart, "start", "s", "", "quick start")//在一个命令下相同的flag会panic
 	api.Flags().StringVarP(&port, "port", "p", ":8080", "set port")
