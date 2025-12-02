@@ -12,13 +12,15 @@ var version string
 var RootCmd = &cobra.Command{
 	Use:     "gogo",  //根命令
 	Short:   "gogo",  //简短解释
-	Version: version, //支持-v，-V，-version获取版本信息
+	Version: version, //支持gogo version获取版本信息
 	Run: func(cmd *cobra.Command, args []string) { //命令执行主体
-		fmt.Println("gogo:", version)
+		//无前缀参数被解析成字符串数组
+		fmt.Println("gogo命令参数:", args[0])
 	},
 }
 
 func init() {
+	//绑定flag到指针，v是简写，value是默认值，最后是介绍
 	RootCmd.PersistentFlags().StringVarP(&version, "version", "v", "v0.0.1", "set_version")
 }
 
@@ -27,10 +29,4 @@ func Execute() {
 		fmt.Println(err)
 		os.Exit(1)
 	}
-}
-
-func init() {
-	//在命令行运行之前，init之后的初始化。
-	//在函数内部可以插入配置文件初始化逻辑，在程序启动之初配合命令设置或修改配置文件。
-	cobra.OnInitialize()
 }

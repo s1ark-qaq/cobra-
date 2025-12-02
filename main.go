@@ -1,34 +1,24 @@
 package main
 
 import (
-	"bufio"
 	"cobra/cmd"
 	"fmt"
-	"os"
-	"strings"
+
+	"github.com/spf13/cobra"
 )
 
+func init() {
+	fmt.Println("init")
+}
+
+func cobraInit() {
+	fmt.Println("cobraInit")
+}
+
 func main() {
-	scanner := bufio.NewScanner(os.Stdin)
-	fmt.Println("Todo启动, 输入 'exit' 退出")
-
-	for {
-		if !scanner.Scan() {
-			break // Ctrl+D
-		}
-
-		input := strings.TrimSpace(scanner.Text())
-		if input == "" {
-			continue
-		}
-		if input == "exit" {
-			break
-		}
-
-		// 将用户输入作为命令行参数传给 Cobra
-		args := strings.Fields(input)
-		cmd.RootCmd.SetArgs(args)
-		cmd.Execute()
-	}
-
+	//在命令行运行之前，init之后的初始化。
+	//在函数内部可以插入配置文件初始化逻辑，在程序启动之初配合命令设置或修改配置文件。
+	cobra.OnInitialize(cobraInit)
+	//启动根命令
+	cmd.Execute()
 }
