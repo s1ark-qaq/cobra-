@@ -28,7 +28,7 @@ var todoCmd = &cobra.Command{
 	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		var name = "todo"
-		//args是没有-或--前缀的参数，支持灵活变动
+		//args是没有-或--前缀的参数，支持灵活传参
 		if len(args) > 0 {
 			name = args[0]
 		}
