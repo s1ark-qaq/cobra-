@@ -14,24 +14,24 @@ var (
 )
 
 func init() {
+	//添加子命令
 	RootCmd.AddCommand(todoCmd)
 	//varP 附带简写
 	todoCmd.Flags().StringVarP(&flag, "flag", "f", "flag_default", "测试解析顺序")
 	//var 不带简写
-	todoCmd.Flags().StringVar(&flag, "flag", "flag_default", "测试解析顺序")
+	//todoCmd.Flags().StringVar(&flag, "flag", "flag_default", "测试解析顺序")
 }
 
 var todoCmd = &cobra.Command{
 	Use:   "todo",
 	Short: "创建todo文件",
-	//显示args的数量为1，还有max和min
-	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		var name = "todo"
 		//args是没有-或--前缀的参数，支持灵活传参
-		if len(args) > 0 {
-			name = args[0]
+		if len(args) == 0 {
+			fmt.Println("缺少参数，请重试")
+			return
 		}
+		name := args[0]
 		todoFile = name + ".md"
 
 		// 创建文件
