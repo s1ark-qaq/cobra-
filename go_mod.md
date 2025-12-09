@@ -27,8 +27,10 @@ Commands []*Command
 
 }
 
-## go mod init
+## go mod init [module-path]
 go mod管理器的初始化,创建go.mod
+
+os.Getenv(key),获取环境变量
 
 ## go mod tidy
 这是go语言本身用于包管理的一个命令,也是go源码base.Command的子命令之一,作用是整理 go.mod 和 go.sum 文件
